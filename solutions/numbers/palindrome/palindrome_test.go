@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestTwoSum(t *testing.T) {
+func TestPalindrome(t *testing.T) {
 	tests := []struct {
 		nums int
 		want bool
