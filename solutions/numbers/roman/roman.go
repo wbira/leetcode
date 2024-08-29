@@ -24,44 +24,12 @@ func RomanToInt(s string) int {
 		nextLetter := resolveNextLetter(s, i+1)
 		partialNum := romanValues[currentLetter]
 
-		switch {
-		case currentLetter == 'I' && nextLetter == 'V':
-			{
-				total += 4
-				i++
-			}
-		case currentLetter == 'I' && nextLetter == 'X':
-			{
-				total += 9
-				i++
-			}
-
-		case currentLetter == 'X' && nextLetter == 'L':
-			{
-				total += 40
-				i++
-			}
-
-		case currentLetter == 'X' && nextLetter == 'C':
-			{
-				total += 90
-				i++
-			}
-
-		case currentLetter == 'C' && nextLetter == 'D':
-			{
-				total += 400
-				i++
-			}
-
-		case currentLetter == 'C' && nextLetter == 'M':
-			{
-				total += 900
-				i++
-			}
-		default:
+		if romanValues[nextLetter] > partialNum {
+			total -= partialNum
+		} else {
 			total += partialNum
 		}
+
 	}
 
 	return total
