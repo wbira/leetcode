@@ -37,3 +37,22 @@ func Traverse(head *ListNode) []int {
 	}
 	return result
 }
+
+func DeleteNode(head *ListNode, data int) *ListNode {
+	if head == nil {
+		return nil
+	}
+
+	if head.Val == data {
+		return head.Next
+	}
+
+	curr := head
+	for curr.Next != nil {
+		if curr.Next.Val == data {
+			curr.Next = curr.Next.Next
+			return head
+		}
+	}
+	return head
+}

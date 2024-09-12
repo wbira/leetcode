@@ -58,3 +58,36 @@ func TestTraverse(t *testing.T) {
 		t.Errorf("Expected %v, but got %v", expected, result)
 	}
 }
+
+func TestDeleteNode(t *testing.T) {
+	var head *ListNode
+
+	// Insert multiple nodes to create the list
+	head = InsertAtEnd(head, 10)
+	head = InsertAtEnd(head, 20)
+	head = InsertAtEnd(head, 30)
+
+	// Delete a node in the middle
+	head = DeleteNode(head, 20)
+	result := Traverse(head)
+	expected := []int{10, 30}
+
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("Expected %v, but got %v", expected, result)
+	}
+
+	// Delete the head node
+	head = DeleteNode(head, 10)
+	result = Traverse(head)
+	expected = []int{30}
+
+	if !reflect.DeepEqual(result, expected) {
+		t.Errorf("Expected %v, but got %v", expected, result)
+	}
+
+	// Delete the last remaining node
+	head = DeleteNode(head, 30)
+	if head != nil {
+		t.Errorf("Expected empty list, but got %v", Traverse(head))
+	}
+}
